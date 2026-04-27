@@ -59,3 +59,29 @@ INSERT INTO customers (full_name, email, phone) VALUES
 -- vi cot customers.email da duoc dat UNIQUE.
 INSERT INTO customers (full_name, email, phone) VALUES
 ('Nguyen Van A', 'ha.lt@gmail.com', '0901000099');
+
+-- =========================
+-- BTTH3
+-- =========================
+
+-- Danh sach sach the loai "Trinh tham" co gia duoi 100.000
+SELECT *
+FROM books
+WHERE category = 'Trinh tham'
+  AND price < 100000;
+
+-- Danh sach khach hang dung email Google (gmail.com)
+SELECT *
+FROM customers
+WHERE email LIKE '%@gmail.com';
+
+-- Top 3 cuon sach dat tien nhat
+SELECT *
+FROM books
+ORDER BY price DESC
+LIMIT 3;
+
+-- Giam gia 10% cho các sach xuat ban truoc nam 2020
+UPDATE books
+SET price = price * 0.9
+WHERE publish_year < 2020;
