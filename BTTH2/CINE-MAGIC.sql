@@ -39,3 +39,33 @@ CREATE TABLE bookings (
     CONSTRAINT fk_bookings_showtimes
         FOREIGN KEY (showtime_id) REFERENCES showtimes(id)
 );
+
+INSERT INTO movies (id, title, duration_minutes, age_restriction) VALUES
+    (1, 'Avengers: Endgame', 181, 13),
+    (2, 'Dune: Part Two', 166, 13),
+    (3, 'Inside Out 2', 96, 0),
+    (4, 'Deadpool & Wolverine', 127, 18);
+
+INSERT INTO rooms (id, name, max_seats, status) VALUES
+    (1, 'Phong Chieu 1', 120, 'active'),
+    (2, 'Phong Chieu 2', 90, 'active'),
+    (3, 'Phong Chieu 3', 100, 'maintenance');
+
+INSERT INTO showtimes (id, movie_id, room_id, show_time, ticket_price) VALUES
+    (1, 1, 1, '2026-05-01 09:00:00', 95000.00),
+    (2, 2, 2, '2026-05-01 10:30:00', 105000.00),
+    (3, 3, 1, '2026-05-01 13:15:00', 85000.00),
+    (4, 4, 2, '2026-05-01 18:45:00', 120000.00),
+    (5, 2, 1, '2026-05-02 20:00:00', 110000.00);
+
+INSERT INTO bookings (id, showtime_id, customer_name, phone, booking_date) VALUES
+    (1, 1, 'Nguyen Minh Anh', '0901000001', '2026-04-30 08:10:00'),
+    (2, 2, 'Tran Quoc Bao', '0901000002', '2026-04-30 08:20:00'),
+    (3, 3, 'Le Hoang Chau', '0901000003', '2026-04-30 08:45:00'),
+    (4, 4, 'Pham Gia Dat', '0901000004', '2026-04-30 09:00:00'),
+    (5, 5, 'Vo Thu Ha', '0901000005', '2026-04-30 09:15:00'),
+    (6, 1, 'Bui Khanh Linh', '0901000006', '2026-04-30 09:30:00'),
+    (7, 2, 'Do Tuan Kiet', '0901000007', '2026-04-30 10:05:00'),
+    (8, 3, 'Nguyen Bao Ngoc', '0901000008', '2026-04-30 10:20:00'),
+    (9, 4, 'Tran Thanh Nam', '0901000009', '2026-04-30 10:40:00'),
+    (10, 5, 'Le My Duyen', '0901000010', '2026-04-30 11:00:00');
