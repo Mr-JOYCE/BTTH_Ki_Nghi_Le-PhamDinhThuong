@@ -69,3 +69,25 @@ INSERT INTO bookings (id, showtime_id, customer_name, phone, booking_date) VALUE
     (8, 3, 'Nguyen Bao Ngoc', '0901000008', '2026-04-30 10:20:00'),
     (9, 4, 'Tran Thanh Nam', '0901000009', '2026-04-30 10:40:00'),
     (10, 5, 'Le My Duyen', '0901000010', '2026-04-30 11:00:00');
+
+START TRANSACTION;
+
+-- Phòng 1 điều hòa hỏng -> đang bảo trì
+UPDATE rooms SET status = 'maintenance' WHERE id = 1;
+
+-- Chuyển mọi lịch chiếu từ phòng 1 sang phòng 2
+UPDATE showtimes SET room_id = 2 WHERE room_id = 1;
+
+-- Hủy toàn bộ vé của khách có SĐT 0987654321
+DELETE FROM bookings WHERE phone = '0987654321';
+
+-- Gỡ hoàn toàn phim id = 3: xóa vé thuộc suất của phim 3 -> xóa suất -> xóa phim
+DELETE b FROM bookings b
+INNER JOIN showtimes s ON b.showtime_id = s.id
+WHERE s.movie_id = 3;
+
+DELETE FROM showtimes WHERE movie_id = 3;
+
+DELETE FROM movies WHERE id = 3;
+
+COMMIT;
