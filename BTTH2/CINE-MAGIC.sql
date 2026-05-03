@@ -91,3 +91,27 @@ DELETE FROM showtimes WHERE movie_id = 3;
 DELETE FROM movies WHERE id = 3;
 
 COMMIT;
+
+-- Liệt kê các bộ phim có thời lượng từ 90 đến 120 phút
+SELECT id, title, duration_minutes, age_restriction
+FROM movies
+WHERE duration_minutes BETWEEN 90 AND 120;
+
+-- Danh sách vé đặt của lịch chiếu id = 2, mới nhất lên đầu
+SELECT id, showtime_id, customer_name, phone, booking_date
+FROM bookings
+WHERE showtime_id = 2
+ORDER BY booking_date DESC;
+
+-- Danh sách phim giới hạn độ tuổi 18 HOẶC thời lượng lớn hơn 150 phút
+SELECT id, title, duration_minutes, age_restriction
+FROM movies
+WHERE age_restriction = 18
+   OR duration_minutes > 150;
+
+-- Lịch chiếu có giá vé > 100.000 và được chiếu trong tháng hiện tại
+SELECT id, movie_id, room_id, show_time, ticket_price
+FROM showtimes
+WHERE ticket_price > 100000
+  AND show_time >= DATE_FORMAT(CURRENT_DATE, '%Y-%m-01')
+  AND show_time < DATE_ADD(DATE_FORMAT(CURRENT_DATE, '%Y-%m-01'), INTERVAL 1 MONTH);
